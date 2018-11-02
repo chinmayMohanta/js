@@ -1,0 +1,48 @@
+
+Query
+1
+Find adventure or tatane movies older than1990, sort by ascending year:
+db.films.find({year:{$lt:1990},$or: [ { kind:"adventure" }, { kind:"tatane"} ]},{title:1}).sort( { year: 1 } )
+2.
+Find the 3 oldest movies:
+db.films.find({year:{$ne:null}},{title: 1}).sort( { year: 1 } ).limit(3)
+3.
+Find films for which duration is not mentioned:
+db.films.find({duration:null},{title: 1})
+4.
+Find movies that are not dramatic
+db.films.find({kind:{$ne:"drama"}},{title: 1})
+5.
+List the title of the film released in 1975, 1984, 1990 and 1996
+db.films.find({year:{$in:[1975,1984,1990,1996]}},{title: 1})
+6.
+List the title of the movies whose duration is between 1:30 and 2h
+db.films.find({duration:{$gte:90},duration:{$lte:120}},{title: 1})
+7.
+Lilst the movies with multiple kinds
+db.films.find({ kind: { $type : 4 } },{title: 1})
+8.
+Add kind sf to Pi
+db.films.update({title:"Pi"},{$unset:{kind:""} })
+db.films.update({title:"Pi"},{$set:{kind:["thriller","sf"]}})
+9.
+Rename 'Mary & Max' to 'Mary et Max'
+db.films.update({title:"Mary & Max"},{$set:{title:"Mary & Max"}})
+10.
+Add 10mn duration to the movie '4 garç ons pleins d'avenir..'
+db.films.update({title:"4 garcons pleins d'avenir"},{ $inc: { duration: 10 }})
+11.
+Delete the adventure movies released since 1982
+db.films.remove({kind:"adventure"},{ year: { gte: 1982 }})
+12.
+Display the movies number by anglophone nationality
+db.films.find({natio:{$in:["us","gb"]}}).count()
+13.
+Display the movies by year, by total duration released that year:
+db.films.aggregate({$group : {_id : "$year", total : { $sum : "$duration" }}});
+14.
+Display the movies count realized since 1984
+db.films.find({ year: { gte: 1982 }}).count()
+15.
+Display the total duration of the movies 'Retour vers le futur'
+db.films.aggregate({$match : {title : /Retour vers le futur.*/}},{$group : { _id : "$sf", total : { $sum : "$duration" } }});
