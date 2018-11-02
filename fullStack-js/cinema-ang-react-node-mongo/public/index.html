@@ -1,0 +1,90 @@
+
+<!doctype html>
+<html lang="en" ng-app="cinemaApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Cinema</title>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script src="/app.js"></script>
+  </head>
+   <body >
+
+     <div ng-controller="FilmController1">
+
+      <form novalidate class="simple-form">
+        <H4> Rate a movie in the scale of 1 to 10 </h4>
+	  <table>
+		<tr>
+			<td><select ng-model="selectedFilm" ng-options="x.title for x in message | orderBy"</td>
+			<td>Current Rating ::  {{selectedFilm.rate}} </td>
+		</tr>
+    <tr>
+      <td> Give your Rating ::</td><td><input type="text" ng-model="rate" /></td>
+			<td><input type="submit" ng-click="update(user)" value="Save" /></td>
+		</tr>    	
+	</table>
+      </form>
+
+  </div>
+
+    <br>
+     <br>
+      <br>
+       <br>
+        <br>
+    <H4> ADD a movie </h4>
+   <div ng-controller="FilmController2">
+
+     <form novalidate class="simple-form">
+	  <table>
+		<tr>
+			
+			<td>Title :</td><td><input type="text" ng-model="title" /></td>
+      <td>Year :</td><td><input type="text" ng-model="year" /></td>
+      <td>Kind :</td><td><input type="text" ng-model="kind" /></td>
+      <td>Nationality :</td><td><input type="text" ng-model="nationality" /></td>
+			<td><input type="submit" ng-click="add(user)" value="Add" /></td>
+		</tr>    	
+	</table>
+      </form>
+  </div>
+
+
+  <br>
+   <br>
+    <br>
+     <br>
+      <br>
+      <H4> Modify or Delete a movie </h4>
+
+  <div ng-controller="FilmController3">
+
+     <form novalidate class="simple-form">
+	  <table>
+		<tr>
+			<td><select ng-model="selectedFilm" ng-options="x.title for x in message | orderBy:'title' "/></td>
+     
+			<td>Title :</td><td><input type="text" ng-model="selectedFilm.title" /></td>
+      <td>Year :</td><td><input type="text" ng-model="selectedFilm.year" /></td>
+      <td>Kind :</td><td><input type="text" ng-model="selectedFilm.kind" /></td>
+      <td>Nationality :</td><td><input type="text" ng-model="selectedFilm.natio" /></td>
+			<td><input type="submit" ng-click="modify(user)" value="Modify" /></td>
+      <td><input type="submit" ng-click="delete(user)" value="Delete" /></td>
+		</tr>    	
+	</table>
+      </form>
+  </div>
+
+
+
+
+
+
+
+
+
+
+       
+  </body>
+</html>
