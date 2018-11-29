@@ -14,4 +14,3 @@ The web front end is available at :: http://localhost:3000/api/front/
 
 
 
-For any issue contact : mohantachi@eisti.eu
